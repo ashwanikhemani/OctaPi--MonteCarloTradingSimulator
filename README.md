@@ -8,5 +8,3 @@ The picture of all team members is also located here.
 
 The source code is uploaded and can be found in this bitbucket repository.
 
-To set up the cluster and run the application, please follow these steps.
-1. 
