@@ -1,0 +1,11 @@
+Symbol,Weight or dollar amount (must include $)
+1,GE
+2,AAPL
+3,GOOG
+4,GS
+5,OIL
+6,DIS
+7,ABC
+8,DEF
+9,GHI
+10,JKL

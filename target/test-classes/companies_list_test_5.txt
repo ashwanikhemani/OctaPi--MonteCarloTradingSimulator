@@ -1,0 +1,3 @@
+Symbol,Weight or dollar amount (must include $)
+BPL,$1600.00
+AAPL,$400.00

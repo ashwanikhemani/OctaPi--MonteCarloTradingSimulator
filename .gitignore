@@ -1,0 +1,11 @@
+.idea
+tmp
+metastore_db
+C:%5Cembedded_hdfs/
+derby.log
+monte-carlo-var.iml
+windows_libs
+.DS_Store
+metastore_db
+downloadStock-input-XXXXX
+downloadStock

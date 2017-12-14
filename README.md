@@ -1,33 +1,12 @@
-# Course project
-### Description: create a Monte-Carlo simulator for evaluating stock purchase decisions that runs on Spark and deployed on your private OctoPi cloud
-### Grade: 25%
+Team 2, CS 441 - Project.
 
-## Overview
-In your course project, which is built on your last homework, you will gain experience with using your private OctoPi cloud on top of which you will run your program for evaluating stock investment decisions using Monte-Carlo simulation. As in HW3, you will use Kubernetes, an open-source platform designed to automate deploying, scaling, and operating application containers https://kubernetes.io, on Raspberry Pi and experiment with container orchestration. This homework is done in already organized teams, each consisting of seven to nine members. As I said before, if you are a lone wolf who does not like to work in teams, your cost will be higher, but you can do this project alone or you can choose a different project with my approval. *If you change the team notify me by email or piazza no later than November, 10*. 
+Google Drive folder containing documentation, screenshots and terminal output can be found at the following link:
 
-## Baseline
-Your baseline project on predicting stock portfolio losses using Monte Carlo simulation in Spark is located in the [GitHub repository](https://github.com/vzlatkin/MonteCarloVarUsingRealData). You will follow the instructions, fix problems, and deploy the simulator on your OctoPi cloud. In this homework you will use [Google Finance](https://support.google.com/docs/answer/3093281?hl=en&ref_topic=3105411) or some other web service to obtain historical securities information (i.e., stock prices). There are many guides and tutorials on the Internet how to configure a Raspberry Pi cluster with Apache Spark on YARN, e.g., [DOYDJ](https://github.com/vzlatkin/MonteCarloVarUsingRealData). 
+https://drive.google.com/drive/folders/1di-_KUJ-CICP2TNjoJpYbLON-Nms67ly?usp=sharing
 
-## Functionality
-The functionality of your Monte Carlo simulator includes the following. The input to your simulator is a randomly selected list of stocks, your total fund amount in USD, and a time period for which prices are recorded for these stocks at Google Finance or some other financial engine that contains this information. You will allocate your fund using some distribution criteria to purchase stocks at the beginning of the time period. As the simulation starts, your simulator records losses and gains as the simulation time goes by. The simulator makes decisions at some time points to sell stocks (e.g., to stop losses or because the gain  plateaued). If more fund money becomes available because of the gain from a stock sell or because of the new contributions to the fund, the simulator will select new stock ticker randomly and invest the money in it. As the simulation comes to the end, you will record the gains and losses. You can repeat the simulation as many times as you want.
+The picture of all team members is also located here.
 
-## Piazza collaboration
-You can post questions and replies, statements, comments, discussion, etc. on Piazza. For this course project, feel free to share your ideas, mistakes, code, scripts, commands, and your other solutions beyond your group for a team project, and you can ask and advise others using Piazza on where resources and sample programs can be found on the internet, how to resolve dependencies and configuration issues. When posting question and answers on Piazza, please select the appropriate folder, i.e., project, to ensure that all discussion threads can be easily located. Active participants and problem solvers will receive bonuses from the big brother :-) who is watching your exchanges on Piazza (i.e., me).
+The source code is uploaded and can be found in this bitbucket repository.
 
-## Git logistics
-This is a group homework, so one of team members will create a private fork and will invite her/his classmates with the write access to your fork. Your submission will include the names of all of your forkmates in the README.md and you will receive the same grade for this homework. If you submitted your previous homework, it means that you were already added as a member of CS_441_2017 team in Bitbucket. You will find a corresponding entry for this homework. You will fork this repository and your fork will be private, no one else besides you, your forkmates, the TA and your course instructor will have access to your fork. Please remember to grant a read access to your repository to your TA and your instructor and write access to your forkmates. You can commit and push your code as many times as you want. Your code will not be visible and it should not be visible to other students except for your forkmate, of course. When you push your project, your instructor and the TA will see you code in your separate private fork. Making your fork public or inviting other students except for your forkmates to join your fork before the submission deadline will result in losing your grade. For grading, only the latest push timed before the deadline will be considered. If you push after the deadline, your grade for the homework will be zero. For more information about using git and bitbucket specifically, please use this link as the starting point https://confluence.atlassian.com/bitbucket/bitbucket-cloud-documentation-home-221448814.html. For those of you who still struggle with Git, I keep recommending a book by Ryan Hodson on Ry's Git Tutorial. The other book called Pro Git is written by Scott Chacon and Ben Straub and published by Apress and it is freely available https://git-scm.com/book/en/v2/. There are multiple videos on youtube that go into details of Git organization and use.
-
-## Submission deadline and logistics
-The repository submission is on Friday, December 15 at 10PM via the bitbucket repository. You will bring your physical cluster to my RA or me before the submission day. Your git submission will include the code for the simulator program, your documentation with instructions and detailed explanations on how assembled and deployed your cloud with images taken from your intermediate steps, and what the limitations of your implementation are. Please consider recording a movie with detailed instructions and place it on youtube and the link to the movie put in the readme. Please follow this naming convention while submitting your work : "Team<N>_CS441_project", where <N> is your team number, so that we can easily recognize your submission. I repeat, please make sure that you will give both your TA and me read access to your private forked repository and the names of all members of your team are recorded in your README file.
-
-
-## Evaluation criteria
-- the maximum grade for this course is 25%. Points are subtracted from this maximum grade: for example, saying that 2% is lost if some requirement is not completed means that the resulting grade will be 25%-2% => 23%; if the core project functionality does not work, no bonus points will be given;
-- only OctaPi cluster is assembled and nothing else is done: up to 20% lost;
-- missing comments from the simulation program: up to 15% lost;
-- no instructions how to install and run your simulator on the OctoPi cloud: up to 15% lost;
-- the program crashes without completing the core functionality: up to 10% lost;
-- the documentation exists but it is insufficient to understand how you assembled and deployed all components of the cloud: up to 15% lost;
-- the minimum grade for this project cannot be less than zero.
-
-That's it, folks!
+To set up the cluster and run the application, please follow these steps.
+1. 
