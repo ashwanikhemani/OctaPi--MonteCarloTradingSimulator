@@ -20,16 +20,15 @@ Mayuri Kumari, Graduate, 672159677, mkumar29@uic.edu
 
 Description of the file structure of the repository :
 
-output  : testing results of our application 
-runningSpark : files required to setup the spark cluster 
+output  : Result of our application 
+runningSpark : files required to setup and run the spark cluster 
 src/main/java/com/hortonworks/example : code for the monte carlo simulator application 
-stockData :  input data for the simulator collected from the finanice API
+stockData :  input data for the simulator collected from the finance API
 target :  build folder for the application 
 README.md : read me file for the submission 
 companies_list.txt : the list of companies used 
 downloadData.py : the script to extract data from the finance API
 downloadHistoricalData.sh : the script to extract data from the finance API
-pom.xml :  build file for the application 
 
 
 

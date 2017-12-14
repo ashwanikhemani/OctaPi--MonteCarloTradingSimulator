@@ -28,7 +28,7 @@ public class Main implements Serializable{
     private static JavaSparkContext sc = null;
 
     private static SQLContext sqlContext = null;
-
+//    initialise number of trials
     final int NUM_TRIALS = 1;
     JavaPairRDD<String, String> symbolsAndWeightsRDD = null;
     Map<String, Float> symbolsAndWeights;
@@ -37,6 +37,7 @@ public class Main implements Serializable{
 
     public static void main(String[] args) throws Exception {
         Main m = new Main();
+//        give default path of company list file
         String listOfCompanies = new File("companies_list.txt").toURI().toString();
         String stockDataDir = "hdfs://sandbox.hortonworks.com/tmp/stockData/*.csv";
         if (sc == null) {
@@ -44,6 +45,7 @@ public class Main implements Serializable{
             sc = new JavaSparkContext(conf);
             sqlContext = new org.apache.spark.sql.SQLContext(sc);
         }
+//        override path of company list and stock data directory where csv files are stored. file paths are args while running the program.
 
         if (args.length > 0) {
             listOfCompanies = args[0];
@@ -60,28 +62,31 @@ public class Main implements Serializable{
         sc.stop();
     }
 
+//    The function which distributes the total funds among the companies present in the company list file.
     void redistribute(JavaRDD<String> filteredFileRDD,float amt)
     {
         Set<Integer> arl = new HashSet<Integer>();
         Random r = new Random();
-//        TODO make sure there are no duplicates
+    //        Choose 4 companies at random
         while(arl.size()<4){
             arl.add(r.nextInt((10 - 1) + 1) + 1);
         }
-
+    //assign 1/4th of the total amount to each
         float w =0.25f;
         symbolsAndWeightsRDD = filteredFileRDD.filter(s -> !s.startsWith("Symbol")).mapToPair(s ->
         {
 
             String[] splits = s.split(",", -2);
 
-
+        //            creating the RDD where every record is of the form: company symbol,total amount invested in it
+        //            if no amount invested, append $0
             if (arl.contains(Integer.parseInt(splits[0])))
                 return new Tuple2<>(splits[1], "$"+(amt*0.25));
             else
                 return new Tuple2<>(splits[1], "$0");
         });
 
+//        Displaying to console
         symbolsAndWeightsRDD.take(10).forEach(x -> System.out.println(x._1() + "->" + x._2()));
 
 
@@ -92,6 +97,8 @@ public class Main implements Serializable{
 
 //            totalInvestement = symbolsAndDollarsRDD.reduce((x, y) -> new Tuple2<>("total", x._2() + y._2()))._2().longValue();
 
+//TODO Verify if its the weight or the percentage
+//          SYMBOL,WEIGHT OF TOTAL AMT INVESTED IN THAT COMPANY
             symbolsAndWeights = symbolsAndDollarsRDD.mapToPair(x -> new Tuple2<>(x._1(), (x._2() / totalInvestement))).collectAsMap();
             symbolsAndWeights.forEach((s, f) -> System.out.println("symbol: " + s + ", % of portfolio: " + f));
         } else {
@@ -121,31 +128,24 @@ public class Main implements Serializable{
    2. convert dollar amounts to fractions
    3. create a local map
    */
+//       INITIAL TOTAL amount to be invested in all stocks.
         float amt= 1000.0f;
 
 
         redistribute(filteredFileRDD,amt);
         //convert from $ to % weight in portfolio
 
-   /*
-   read all stock trading data, and transform
-   1. get a PairRDD of date -> (symbol, changeInPrice)
-   2. reduce by key to get all dates together
-   3. filter every date that doesn't have the max number of symbols
-\        */
+       /*
+       read all stock trading data, and transform
+       1. get a PairRDD of date -> (symbol, changeInPrice)
+       2. reduce by key to get all dates together
+           */
 
         // 1. get a PairRDD of date -> Tuple2(symbol, changeInPrice)
-
-
-
-
+        // 2. This RDD shows the change in the price for a particular company on a particular date
+        // 3. Change in the price was calculated and stored in the csv file, which is being read line by line here as an input to this RDD
         JavaPairRDD<String, Tuple2> datesToSymbolsAndChangeRDD = sc.textFile(stockDataDir).filter(s -> !s.contains("Change_Pct")).mapToPair(x -> {
-            //skip header
-//            if (x.contains("Change_Pct")) {
-////                return Collections.EMPTY_LIST;
-//                return Collections.singletonList(new Tuple2<>("2017-12-01", new Tuple2<>("GE", 0.0)));
-//
-//            }
+
             String[] splits = x.split(",", -2);
 
             Float changeInPrice = new Float(splits[8]);
@@ -165,35 +165,36 @@ public class Main implements Serializable{
         JavaPairRDD<String, Iterable<Tuple2>> groupedDatesToSymbolsAndChangeRDD = datesToSymbolsAndChangeRDD.groupByKey();
 //        //debug
 
-//        //3. filter every date that doesn't have the max number of symbols
         long numSymbols = symbolsAndWeightsRDD.count();
 //        Map<String, Object> countsByDate = datesToSymbolsAndChangeRDD.countByKey();
         JavaPairRDD<String, Iterable<Tuple2>> filterdDatesToSymbolsAndChangeRDD = groupedDatesToSymbolsAndChangeRDD;
 //        JavaPairRDD<String, Iterable<Tuple2>> filterdDatesToSymbolsAndChangeRDD = groupedDatesToSymbolsAndChangeRDD.filter(x -> (Long) countsByDate.get(x._1()) >= numSymbols);
+
+
+//        TOTAL number of days for which data is available
         long numEvents = filterdDatesToSymbolsAndChangeRDD.count();
         //debug
         System.out.println("num symbols: " + numSymbols);
-//        filterdDatesToSymbolsAndChangeRDD.take(10).forEach(x -> System.out.println(x._1() + "->" + x._2()));
 
 
 
-   /*
-   execute NUM_TRIALS
-   1. pick a random date from the list of historical trade dates
-   2. sum(stock weight in overall portfolio * change in price on that date)
-    */
+
         double fraction = 1.0 * NUM_TRIALS / numEvents;
         Float total;
 
 
         Map<String, Iterable<Tuple2>> newmap = new TreeMap<String, Iterable<Tuple2>>();
         Map<String, Float> trialsMap = new TreeMap<String, Float>();
+//        Sort the grouped by date RDD in ascending order of dates
         groupedDatesToSymbolsAndChangeRDD.take(10).forEach(i ->
                 newmap.put(i._1(), i._2())
         );
 
 //        JavaPairRDD<String, Float> resultOfTrials = groupedDatesToSymbolsAndChangeRDD.mapToPair(i -> {
-          for (String k: newmap.keySet()) {
+
+//          Calculate the total change in price for companies per day and sell all the stock and reinvest the current amount
+//           if the profit is less than 20% or if losses were incurred on that day.
+        for (String k: newmap.keySet()) {
               total = 0f;
 
               Float compChange = 0.0f;
@@ -208,6 +209,7 @@ public class Main implements Serializable{
                           + " for a total of " + total);
               }
               if (total < 1.2) {
+//                  reinvest the current amount
                   redistribute(filteredFileRDD,amt*((total/100.0f)+1));
               }
 
