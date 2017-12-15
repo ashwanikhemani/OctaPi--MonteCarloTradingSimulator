@@ -13,6 +13,7 @@ import scala.Tuple2;
 import java.io.File;
 import java.io.Serializable;
 import java.util.*;
+import org.apache.commons.math3.distribution.UniformRealDistribution;
 
 
 
@@ -63,11 +64,21 @@ public class Main implements Serializable{
     void redistribute(JavaRDD<String> filteredFileRDD,float amt)
     {
         Set<Integer> arl = new HashSet<Integer>();
-        Random r = new Random();
-//        TODO make sure there are no duplicates
+
+//        Random r = new Random();
+////        TODO make sure there are no duplicates
+//        while(arl.size()<4){
+//            arl.add(r.nextInt((10 - 1) + 1) + 1);
+//        }
+
+
+        UniformRealDistribution urd = new UniformRealDistribution(0,11);
+
+
         while(arl.size()<4){
-            arl.add(r.nextInt((10 - 1) + 1) + 1);
+            arl.add((int)urd.sample());
         }
+
 
         float w =0.25f;
         symbolsAndWeightsRDD = filteredFileRDD.filter(s -> !s.startsWith("Symbol")).mapToPair(s ->
@@ -251,11 +262,11 @@ public class Main implements Serializable{
         float mostLikely = new Float(percentilesRow.get(0).getList(0).get(1).toString()) / 100;
         float bestCase = new Float(percentilesRow.get(0).getList(0).get(2).toString()) / 100;
 
-        System.out.println("In a single day, this is what could happen to your stock holdings if you have $" + totalInvestement + " invested");
+        System.out.println("Over the time period, this is what could happen to your stock holdings if you have $" + amt + " invested");
         System.out.println(String.format("%25s %7s %7s", "", "$", "%"));
-        System.out.println(String.format("%25s %7d %7.2f%%", "worst case", Math.round(totalInvestement * worstCase / 100), worstCase));
-        System.out.println(String.format("%25s %7d %7.2f%%", "most likely scenario", Math.round(totalInvestement * mostLikely / 100), mostLikely));
-        System.out.println(String.format("%25s %7d %7.2f%%", "best case", Math.round(totalInvestement * bestCase / 100), bestCase));
+        System.out.println(String.format("%25s %7d %7.2f%%", "worst case", Math.round(amt * worstCase / 100), worstCase));
+        System.out.println(String.format("%25s %7d %7.2f%%", "most likely scenario", Math.round(amt * mostLikely / 100), mostLikely));
+        System.out.println(String.format("%25s %7d %7.2f%%", "best case", Math.round(amt * bestCase / 100), bestCase));
 
 //        return worstCase;
 

@@ -5,7 +5,7 @@ Symbol,Weight or dollar amount (must include $)
 4,GS
 5,OIL
 6,DIS
-7,ABC
-8,DEF
-9,GHI
-10,JKL
+7,MSFT
+8,KOF
+9,COKE
+10,KO
