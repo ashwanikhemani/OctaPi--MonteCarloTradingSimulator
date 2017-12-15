@@ -137,5 +137,14 @@ we can also ssh using the IPs of the above pis.
 	tail -f stdout
 	
 	//you will see the output of our program here.
+	
+	//to check the output folder specified while running the program please run the following command to 
+	// download the output directory from s3. The aws cli interface is configured with our credentials. They 
+	// can be replaced.
+	
+	aws s3 cp s3://spark-cloud/output/ output --recursive
+	
+	//This will download the output directory to a folder named 'output' in the directory from which this command is executed.
+	
 
 
