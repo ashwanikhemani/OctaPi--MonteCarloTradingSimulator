@@ -36,34 +36,34 @@ Instructions for a quick test of our application:
 The Pi in the black case is the Kubernetes master. The rest are K8s slaves.
 
 1.	Perform the following on Master node.
-sudo su
+	sudo su
 
-kubeadm reset
+	kubeadm reset
 
-kubeadm init --pod-network-cidr 10.244.0.0/16
+	kubeadm init --pod-network-cidr 10.244.0.0/16
 
-su pirate
+	su pirate
 
-sudo cp /etc/kubernetes/admin.conf $HOME/
+	sudo cp /etc/kubernetes/admin.conf $HOME/
 
-sudo chown $(id -u):$(id -g) $HOME/admin.conf
+	sudo chown $(id -u):$(id -g) $HOME/admin.conf
+	
+	export KUBECONFIG=$HOME/admin.conf
 
-export KUBECONFIG=$HOME/admin.conf
+	curl -sSL https://rawgit.com/coreos/flannel/v0.7.1/Documentation/kube-flannel-rbac.yml | kubectl create -f -
 
-curl -sSL https://rawgit.com/coreos/flannel/v0.7.1/Documentation/kube-flannel-rbac.yml | kubectl create -f -
+	curl -sSL https://rawgit.com/coreos/flannel/v0.7.1/Documentation/kube-flannel.yml | sed "s/amd64/arm/g" | kubectl create -f -
 
-curl -sSL https://rawgit.com/coreos/flannel/v0.7.1/Documentation/kube-flannel.yml | sed "s/amd64/arm/g" | kubectl create -f -
-
-sudo iptables -P FORWARD ACCEPT
+	sudo iptables -P FORWARD ACCEPT
 
 2.	Perform the following on the slave nodes.
-sudo su
+	sudo su
 
-kubeadm reset
+	kubeadm reset
 
-<kubeadm_join_command_issued_by_master_node> // once it is initialized it will give such a command for slaves to join.
+	<kubeadm_join_command_issued_by_master_node> // once it is initialized it will give such a command for slaves to join.
 
-sudo iptables -P FORWARD ACCEPT
+	sudo iptables -P FORWARD ACCEPT
 
 3.	On the master node, do the following to set up the Spark cluster:
 	cd spark
