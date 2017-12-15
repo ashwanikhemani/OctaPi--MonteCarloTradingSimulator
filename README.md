@@ -35,6 +35,20 @@ Instructions for a quick test of our application:
 
 The Pi in the black case is the Kubernetes master. The rest are K8s slaves.
 
+Connect to the pis using ssh. Passwords of all pis are hypriot
+Listing the commands for every pi below: 
+riccardo is the kubernetes master.
+
+ssh pirate@riccardo.local
+ssh pirate@giovanni.local
+ssh pirate@ashwani.local
+ssh pirate@dipankar.local
+ssh pirate@hallows.local
+ssh pirate@pratik.local
+ssh pirate@mayuri.local
+
+we can also ssh using the IPs of the above pis.
+
 1.	Perform the following on Master node.
 	sudo su
 
