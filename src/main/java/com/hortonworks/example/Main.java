@@ -251,11 +251,11 @@ public class Main implements Serializable{
         float mostLikely = new Float(percentilesRow.get(0).getList(0).get(1).toString()) / 100;
         float bestCase = new Float(percentilesRow.get(0).getList(0).get(2).toString()) / 100;
 
-        System.out.println("In a single day, this is what could happen to your stock holdings if you have $" + totalInvestement + " invested");
+        System.out.println("Over the time period, this is what could happen to your stock holdings if you have $" + amt + " invested");
         System.out.println(String.format("%25s %7s %7s", "", "$", "%"));
-        System.out.println(String.format("%25s %7d %7.2f%%", "worst case", Math.round(totalInvestement * worstCase / 100), worstCase));
-        System.out.println(String.format("%25s %7d %7.2f%%", "most likely scenario", Math.round(totalInvestement * mostLikely / 100), mostLikely));
-        System.out.println(String.format("%25s %7d %7.2f%%", "best case", Math.round(totalInvestement * bestCase / 100), bestCase));
+        System.out.println(String.format("%25s %7d %7.2f%%", "worst case", Math.round(amt * worstCase / 100), worstCase));
+        System.out.println(String.format("%25s %7d %7.2f%%", "most likely scenario", Math.round(amt * mostLikely / 100), mostLikely));
+        System.out.println(String.format("%25s %7d %7.2f%%", "best case", Math.round(amt * bestCase / 100), bestCase));
 
 //        return worstCase;
 

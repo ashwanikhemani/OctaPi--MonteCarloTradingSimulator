@@ -27,6 +27,7 @@ if [ -d "stockData/" ]; then
     rm -rf -R stockData
 fi
 mkdir stockData
+cp companies_list.txt stockData
 
 for s in $oldestCompanies; do
 	echo "$s"
