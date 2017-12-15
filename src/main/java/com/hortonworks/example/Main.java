@@ -13,6 +13,7 @@ import scala.Tuple2;
 import java.io.File;
 import java.io.Serializable;
 import java.util.*;
+import org.apache.commons.math3.distribution.UniformRealDistribution;
 
 
 
@@ -63,11 +64,21 @@ public class Main implements Serializable{
     void redistribute(JavaRDD<String> filteredFileRDD,float amt)
     {
         Set<Integer> arl = new HashSet<Integer>();
-        Random r = new Random();
-//        TODO make sure there are no duplicates
+
+//        Random r = new Random();
+////        TODO make sure there are no duplicates
+//        while(arl.size()<4){
+//            arl.add(r.nextInt((10 - 1) + 1) + 1);
+//        }
+
+
+        UniformRealDistribution urd = new UniformRealDistribution(0,11);
+
+
         while(arl.size()<4){
-            arl.add(r.nextInt((10 - 1) + 1) + 1);
+            arl.add((int)urd.sample());
         }
+
 
         float w =0.25f;
         symbolsAndWeightsRDD = filteredFileRDD.filter(s -> !s.startsWith("Symbol")).mapToPair(s ->
