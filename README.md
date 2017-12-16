@@ -56,7 +56,8 @@ Alternately, we can also ssh using the IPs of the above pis.
 We have cloned this repo on the master pi. 
 
 1.	**Perform the following on Master node:**
-	```
+
+```
 	sudo su
 	kubeadm reset
 	kubeadm init --pod-network-cidr 10.244.0.0/16
@@ -67,7 +68,8 @@ We have cloned this repo on the master pi.
 	curl -sSL https://rawgit.com/coreos/flannel/v0.7.1/Documentation/kube-flannel-rbac.yml | kubectl create -f -
 	curl -sSL https://rawgit.com/coreos/flannel/v0.7.1/Documentation/kube-flannel.yml | sed "s/amd64/arm/g" | kubectl create -f -
 	sudo iptables -P FORWARD ACCEPT
-	```
+```
+
 2.	**Perform the following on the slave nodes:**
 	```
 	sudo su
