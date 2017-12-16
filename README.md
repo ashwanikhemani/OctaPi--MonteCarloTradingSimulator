@@ -44,11 +44,13 @@ Listing the commands for every pi below:
 
 ```ssh pirate@riccardo.local
 ssh pirate@giovanni.local
+
 ssh pirate@ashwani.local
 ssh pirate@dipankar.local
 ssh pirate@hallows.local
 ssh pirate@pratik.local
-ssh pirate@mayuri.local```
+ssh pirate@mayuri.local
+```
 
 Alternately, we can also ssh using the IPs of the above pis.
 We have cloned this repo on the master pi. 
