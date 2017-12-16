@@ -12,7 +12,7 @@ The source code is uploaded and can be found in this bitbucket repository.
 
 
 
-*Team members*
+_Team members_
 ------------
 ___
 
