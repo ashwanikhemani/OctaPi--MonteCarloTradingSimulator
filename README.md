@@ -47,8 +47,8 @@ Connect to the pis using ssh. Passwords of all pis are `hypriot`
 Listing the commands for every pi below:
 
 ```
-> ssh pirate@riccardo.local
-> ssh pirate@giovanni.local
+ssh pirate@riccardo.local
+ssh pirate@giovanni.local
 ssh pirate@ashwani.local
 ssh pirate@dipankar.local
 ssh pirate@hallows.local
