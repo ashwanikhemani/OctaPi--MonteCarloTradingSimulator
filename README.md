@@ -74,7 +74,7 @@ We have cloned this repo on the master pi.
 	sudo su
 	kubeadm reset
 ```
-	Once it is initialized it will give such a command for slaves to join
+Once it is initialized it will give such a command for slaves to join
 ```
 	<kubeadm_join_command_issued_by_master_node>
 	sudo iptables -P FORWARD ACCEPT
