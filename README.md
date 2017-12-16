@@ -56,7 +56,6 @@ Alternately, we can also ssh using the IPs of the above pis.
 We have cloned this repo on the master pi. 
 
 1.	**Perform the following on Master node:**
-
 ```
 	sudo su
 	kubeadm reset
@@ -71,10 +70,10 @@ We have cloned this repo on the master pi.
 ```
 
 2.	**Perform the following on the slave nodes:**
-	```
+```
 	sudo su
 	kubeadm reset
-	```
+```
 	`<kubeadm_join_command_issued_by_master_node>` Once it is initialized it will give such a command for slaves to join
 	`sudo iptables -P FORWARD ACCEPT`
 	
