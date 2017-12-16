@@ -1,6 +1,6 @@
 
 
-Team 2, CS 441 - Project
+**Team 2, CS 441 - Project**
 ========================
 ---
 
@@ -152,6 +152,7 @@ tail -f stdout
 
 	
 You will see the output of our program here! :thumbsup:
+
 To check the output folder specified while running the program please run the following command to download the output directory from s3. The aws cli interface is configured with our credentials. They can be replaced.
 ```
 aws s3 cp s3://spark-cloud/output/ output --recursive
