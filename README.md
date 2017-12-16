@@ -13,6 +13,7 @@ The source code is uploaded and can be found in this bitbucket repository.
 
 *Team members*
 ------------
+___
 
 * Pratik Anil Kshirsagar, Graduate, 671863272, pkshir2@uic.edu
 * Gurpreet Kaur Chabada, Graduate, 651102968, gchaba2@uic.edu
@@ -25,6 +26,7 @@ The source code is uploaded and can be found in this bitbucket repository.
 
 *Description of the file structure of the repository*
 ---------------------------------------------------
+___
 
 * [output](output) : testing results of our application 
 * [runningSpark](runningSpark) : files required to setup the spark cluster 
@@ -40,6 +42,7 @@ The source code is uploaded and can be found in this bitbucket repository.
 
 *Instructions for a quick test of our application*
 ------------------------------------------------
+___
 
 The Pi in the **black case** is the **Kubernetes master** (with the hostname riccardo.local). The rest are K8s slaves.
 Connect to the pis using ssh. Passwords of all pis are `hypriot`
