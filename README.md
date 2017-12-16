@@ -11,7 +11,9 @@ https://drive.google.com/drive/folders/1di-_KUJ-CICP2TNjoJpYbLON-Nms67ly?usp=sha
 
 The source code is uploaded and can be found in this bitbucket repository.
 
-*Team members*
+
+
+_Team members_
 ------------
 ___
 
@@ -24,7 +26,8 @@ ___
 * Mayuri Kumari, Graduate, 672159677, mkumar29@uic.edu 
 
 
-*Description of the file structure of the repository*
+
+_Description of the file structure of the repository_
 ---------------------------------------------------
 ___
 
@@ -40,7 +43,8 @@ ___
 * [pom.xml](pom.xml) :  build file for the application 
 
 
-*Instructions for a quick test of our application*
+
+_Instructions for a quick test of our application_
 ------------------------------------------------
 ___
 
@@ -64,6 +68,7 @@ Alternately, we can also ssh using the IPs of the above pis.
 We have cloned this repo on the master pi. 
 
 
+
 ### **Perform the following on Master node:**
 ```
 sudo su
@@ -79,6 +84,7 @@ sudo iptables -P FORWARD ACCEPT
 ```
 
 
+
 ### **Perform the following on the slave nodes:**
 ```
 sudo su
@@ -91,6 +97,7 @@ Once it is initialized it will give such a command for slaves to join
 <kubeadm_join_command_issued_by_master_node>
 sudo iptables -P FORWARD ACCEPT
 ```
+
 
 
 ###**On the master node, do the following to set up the Spark cluster:**
