@@ -69,7 +69,7 @@ We have cloned this repo on the master pi.
 	sudo iptables -P FORWARD ACCEPT
 ```
 
-..1. **Perform the following on the slave nodes:**
+2. **Perform the following on the slave nodes:**
 ```
 	sudo su
 	kubeadm reset
