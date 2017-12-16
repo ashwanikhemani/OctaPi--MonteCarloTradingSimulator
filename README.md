@@ -45,7 +45,6 @@ Listing the commands for every pi below:
 ```
 ssh pirate@riccardo.local
 ssh pirate@giovanni.local
-
 ssh pirate@ashwani.local
 ssh pirate@dipankar.local
 ssh pirate@hallows.local
@@ -57,25 +56,26 @@ Alternately, we can also ssh using the IPs of the above pis.
 We have cloned this repo on the master pi. 
 
 1.	**Perform the following on Master node:**
-
-	`sudo su`
-	`kubeadm reset`
-	`kubeadm init --pod-network-cidr 10.244.0.0/16`
-	`su pirate`
-	`sudo cp /etc/kubernetes/admin.conf $HOME/`
-	`sudo chown $(id -u):$(id -g) $HOME/admin.conf`
-	`export KUBECONFIG=$HOME/admin.conf`
-	`curl -sSL https://rawgit.com/coreos/flannel/v0.7.1/Documentation/kube-flannel-rbac.yml | kubectl create -f -`
-	`curl -sSL https://rawgit.com/coreos/flannel/v0.7.1/Documentation/kube-flannel.yml | sed "s/amd64/arm/g" | kubectl create -f -`
-	`sudo iptables -P FORWARD ACCEPT`
-
+	```
+	sudo su
+	kubeadm reset
+	kubeadm init --pod-network-cidr 10.244.0.0/16
+	su pirate
+	sudo cp /etc/kubernetes/admin.conf $HOME/
+	sudo chown $(id -u):$(id -g) $HOME/admin.conf
+	export KUBECONFIG=$HOME/admin.conf
+	curl -sSL https://rawgit.com/coreos/flannel/v0.7.1/Documentation/kube-flannel-rbac.yml | kubectl create -f -
+	curl -sSL https://rawgit.com/coreos/flannel/v0.7.1/Documentation/kube-flannel.yml | sed "s/amd64/arm/g" | kubectl create -f -
+	sudo iptables -P FORWARD ACCEPT
+	```
 2.	**Perform the following on the slave nodes:**
-
-	`sudo su`
-	`kubeadm reset`
+	```
+	sudo su
+	kubeadm reset
+	```
 	`<kubeadm_join_command_issued_by_master_node>` Once it is initialized it will give such a command for slaves to join
 	`sudo iptables -P FORWARD ACCEPT`
-
+	
 3.	**On the master node, do the following to set up the Spark cluster:**
 	
 	Inside the clone of this repo on the master pi(riccardo) run the following commands: 
