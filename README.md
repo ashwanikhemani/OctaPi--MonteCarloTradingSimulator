@@ -1,6 +1,9 @@
+
+
 Team 2, CS 441 - Project
 ========================
 ---
+
 
 Google Drive folder containing documentation, screenshots, terminal output and picture of all team members can be found at the following link:
 
@@ -8,7 +11,7 @@ https://drive.google.com/drive/folders/1di-_KUJ-CICP2TNjoJpYbLON-Nms67ly?usp=sha
 
 The source code is uploaded and can be found in this bitbucket repository.
 
-Team members
+*Team members*
 ------------
 
 * Pratik Anil Kshirsagar, Graduate, 671863272, pkshir2@uic.edu
@@ -20,7 +23,7 @@ Team members
 * Mayuri Kumari, Graduate, 672159677, mkumar29@uic.edu 
 
 
-Description of the file structure of the repository
+*Description of the file structure of the repository*
 ---------------------------------------------------
 
 * [output](output) : testing results of our application 
@@ -35,7 +38,7 @@ Description of the file structure of the repository
 * [pom.xml](pom.xml) :  build file for the application 
 
 
-Instructions for a quick test of our application
+*Instructions for a quick test of our application*
 ------------------------------------------------
 
 The Pi in the **black case** is the **Kubernetes master** (with the hostname riccardo.local). The rest are K8s slaves.
@@ -44,8 +47,8 @@ Connect to the pis using ssh. Passwords of all pis are `hypriot`
 Listing the commands for every pi below:
 
 ```
-ssh pirate@riccardo.local
-ssh pirate@giovanni.local
+> ssh pirate@riccardo.local
+> ssh pirate@giovanni.local
 ssh pirate@ashwani.local
 ssh pirate@dipankar.local
 ssh pirate@hallows.local
@@ -148,7 +151,7 @@ tail -f stdout
 ```
 
 	
-You will see the output of our program here.
+You will see the output of our program here! :thumbsup:
 To check the output folder specified while running the program please run the following command to download the output directory from s3. The aws cli interface is configured with our credentials. They can be replaced.
 ```
 aws s3 cp s3://spark-cloud/output/ output --recursive
