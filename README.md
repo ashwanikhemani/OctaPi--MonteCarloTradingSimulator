@@ -1,4 +1,5 @@
-Team 2, CS 441 - Project.
+Team 2, CS 441 - Project
+========================
 
 Google Drive folder containing documentation, screenshots and terminal output can be found at the following link:
 
