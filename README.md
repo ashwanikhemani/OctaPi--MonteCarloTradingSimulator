@@ -74,58 +74,63 @@ We have cloned this repo on the master pi.
 	sudo su
 	kubeadm reset
 ```
-	`<kubeadm_join_command_issued_by_master_node>` Once it is initialized it will give such a command for slaves to join
-	`sudo iptables -P FORWARD ACCEPT`
+	Once it is initialized it will give such a command for slaves to join
+```
+	<kubeadm_join_command_issued_by_master_node>
+	sudo iptables -P FORWARD ACCEPT
+```
 	
 3.	**On the master node, do the following to set up the Spark cluster:**
 	
 	Inside the clone of this repo on the master pi(riccardo) run the following commands: 
-	
-	`cd runningSpark`
-	`kubectl create -f spark-master.yaml`
-	`kubectl get pods`
-	
-	Identify the 'spark-master' pod
-	Enter the shell of the master using:
-	
-	`kubectl exec -it <name_of_master_pod> bash`
-	`tail -f spark/logs/_(whatever is the name of the only file here)`
-	
-	Wait till the screen shows "I HAVE BEEN ELECTED: I AM ALIVE!"
-	
-	`exit` Exits master shell.
-	`kubectl create -f spark-master-service.yaml`
-	`kubectl create -f spark-worker.yaml`
-	`kubectl get pods`
+```
+	cd runningSpark
+	kubectl create -f spark-master.yaml
+	kubectl get pods
+```
+	Identify the 'spark-master' pod. Enter the shell of the master using:
+```
+	kubectl exec -it <name_of_master_pod> bash
+	tail -f spark/logs/_(whatever is the name of the only file here)
+```
+	Wait till the screen shows "I HAVE BEEN ELECTED: I AM ALIVE!". Now exit the master shell and follow the next commands.
+```
+	exit
+	kubectl create -f spark-master-service.yaml
+	kubectl create -f spark-worker.yaml
+	kubectl get pods
+```
 	
 	Identify the 'spark-master' pod. Enter the shell of the master using:
-	
-	`kubectl exec -it <name_of_master_pod> bash`
-	`tail -f spark/logs/_(whatever is the name of the only file here)`
-	
+```	
+	kubectl exec -it <name_of_master_pod> bash
+	tail -f spark/logs/_(whatever is the name of the only file here)
+```
 	Wait till the screen shows "Registered worker..."
 	
 	`spark-submit --properties-file s3.properties --class com.hortonworks.example.Main --master spark://spark-master:7077 --num-executors 4 --driver-memory 1024m --executor-memory 1024m --executor-cores 4 --queue default --deploy-mode cluster --conf spark.eventLog.enabled=true --conf spark.eventLog.dir=file:///eventLogging mc.jar s3a://spark-cloud/input/companies_list.txt s3a://spark-cloud/input/*.csv s3a://spark-cloud/output`
 	
 	Wait till the screen shows "Registering app monte-carlo-var-calculator" and "Launching executor app.. on worker.."
-	
-	`exit` Exit master's shell
-	`kubectl get pods`
-	
+```
+	exit
+	kubectl get pods
+```
 	Pick the first worker in the list, copy its name
-	
-	`kubectl exec -it <spark_worker_name> bash`
-	`cd spark/work`
-	`ls`
+```
+	kubectl exec -it <spark_worker_name> bash
+	cd spark/work
+	ls
+```
 	
 	Will show a "driver" file directory
-	
-	`cd <driver..whatever_the_name_is>` 
-	`tail -f stdout`
+```
+	cd <driver..whatever_the_name_is>
+	tail -f stdout
+```
 	
 	You will see the output of our program here.
 	To check the output folder specified while running the program please run the following command to download the output directory from s3. The aws cli interface is configured with our credentials. They can be replaced.
-	
-	`aws s3 cp s3://spark-cloud/output/ output --recursive`
-	
+```
+	aws s3 cp s3://spark-cloud/output/ output --recursive
+```
 	This will download the output directory to a folder named 'output' in the directory from which this command is executed.
