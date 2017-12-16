@@ -12,8 +12,7 @@ The source code is uploaded and can be found in this bitbucket repository.
 
 
 
-_Team members_
-------------
+##**Team members**
 ___
 
 * Pratik Anil Kshirsagar, Graduate, 671863272, pkshir2@uic.edu
@@ -26,7 +25,7 @@ ___
 
 
 
-*Description of the file structure of the repository*
+##**Description of the file structure of the repository**
 ---------------------------------------------------
 ___
 
@@ -43,7 +42,7 @@ ___
 
 
 
-*Instructions for a quick test of our application*
+##**Instructions for a quick test of our application**
 ------------------------------------------------
 ___
 
