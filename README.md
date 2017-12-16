@@ -48,6 +48,7 @@ ssh pirate@pratik.local
 ssh pirate@mayuri.local
 
 we can also ssh using the IPs of the above pis.
+We have cloned this repo on the master pi. 
 
 1.	Perform the following on Master node.
 	sudo su
@@ -80,7 +81,10 @@ we can also ssh using the IPs of the above pis.
 	sudo iptables -P FORWARD ACCEPT
 
 3.	On the master node, do the following to set up the Spark cluster:
-	cd spark
+	
+	Inside the clone of this repo on the master pi(riccardo) run the following commands: 
+	
+	cd runningSpark
 	
 	kubectl create -f spark-master.yaml
 	
