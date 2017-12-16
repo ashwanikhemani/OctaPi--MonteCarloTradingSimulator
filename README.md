@@ -24,7 +24,7 @@ Description of the file structure of the repository
 
 * [output](output) : testing results of our application 
 * [runningSpark](runningSpark) : files required to setup the spark cluster 
-* [src/main/java/com/hortonworks/example](src/main/java/com/hortonworks/example.java) : code for the monte carlo simulator application 
+* [src/main/java/com/hortonworks/example/Main.java](src/main/java/com/hortonworks/example/Main.java) : code for the monte carlo simulator application 
 * [stockData](stockData) :  input data for the simulator collected from the finanice API
 * [target](target) :  build folder for the application 
 * [README.md](README.md) : readme file for the submission 
@@ -42,13 +42,13 @@ Connect to the pis using ssh. Passwords of all pis are `hypriot`
 
 Listing the commands for every pi below:
 
-`ssh pirate@riccardo.local`
-`ssh pirate@giovanni.local`
-`ssh pirate@ashwani.local`
-`ssh pirate@dipankar.local`
-`ssh pirate@hallows.local`
-`ssh pirate@pratik.local`
-`ssh pirate@mayuri.local`
+```ssh pirate@riccardo.local
+ssh pirate@giovanni.local
+ssh pirate@ashwani.local
+ssh pirate@dipankar.local
+ssh pirate@hallows.local
+ssh pirate@pratik.local
+ssh pirate@mayuri.local```
 
 Alternately, we can also ssh using the IPs of the above pis.
 We have cloned this repo on the master pi. 
