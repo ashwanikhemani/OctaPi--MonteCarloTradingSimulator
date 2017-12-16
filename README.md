@@ -1,5 +1,4 @@
 
-
 **Team 2, CS 441 - Project**
 ========================
 ---
@@ -13,7 +12,7 @@ The source code is uploaded and can be found in this bitbucket repository.
 
 
 
-_Team members_
+*Team members*
 ------------
 ___
 
@@ -27,13 +26,13 @@ ___
 
 
 
-_Description of the file structure of the repository_
+*Description of the file structure of the repository*
 ---------------------------------------------------
 ___
 
 * [output](output) : testing results of our application 
 * [runningSpark](runningSpark) : files required to setup the spark cluster 
-* [src/main/java/com/hortonworks/example/Main.java](src/main/java/com/hortonworks/example/Main.java) : code for the monte carlo simulator application 
+* [Main.java](src/main/java/com/hortonworks/example/Main.java) : code for the monte carlo simulator application 
 * [stockData](stockData) :  input data for the simulator collected from the finanice API
 * [target](target) :  build folder for the application 
 * [README.md](README.md) : readme file for the submission 
@@ -44,7 +43,7 @@ ___
 
 
 
-_Instructions for a quick test of our application_
+*Instructions for a quick test of our application*
 ------------------------------------------------
 ___
 
